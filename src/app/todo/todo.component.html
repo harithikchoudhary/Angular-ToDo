@@ -1,0 +1,26 @@
+<div class="container mt-4" *ngIf="todos">
+    <h1>My Todo List</h1>
+  
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="newTodo"
+        placeholder="Add a new task"
+        (keypress)="addTodo($event)"
+      />
+    </div>
+    <button class="btn btn-primary mt-2" (click)="addTodo()">Add</button>
+  
+    <ul class="list-group mt-3">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let todo of todos; let i = index"
+      >
+        <input type="checkbox" [(ngModel)]="todo.completed" />
+        <span [class.completed]="todo.completed">{{ todo.text }}</span>
+        <button class="btn btn-danger btn-sm" (click)="removeTodo(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
